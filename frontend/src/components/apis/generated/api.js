@@ -12,8 +12,10 @@ import { customFetch } from "../custom-fetch";
 /**
  * @summary Health check
  */
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 export const getHealthCheckUrl = () => {
-  return `${VITE_BASE_URL}/api/healthz`;
+  return `${BASE_URL}/api/healthz`;
 };
 
 export const healthCheck = async (options) => {
@@ -24,7 +26,7 @@ export const healthCheck = async (options) => {
 };
 
 export const getHealthCheckQueryKey = () => {
-  return [`${VITE_BASE_URL}/api/healthz`];
+  return [`${BASE_URL}/api/healthz`];
 };
 
 export const getHealthCheckQueryOptions = (options) => {
@@ -60,8 +62,8 @@ export const getListProductsUrl = (params) => {
   const stringifiedParams = normalizedParams.toString();
 
   return stringifiedParams.length > 0
-    ? `${VITE_BASE_URL}/api/products?${stringifiedParams}`
-    : `${VITE_BASE_URL}/api/products`;
+    ? `${BASE_URL}/api/products?${stringifiedParams}`
+    : `${BASE_URL}/api/products`;
 };
 
 export const listProducts = async (params, options) => {
@@ -72,7 +74,7 @@ export const listProducts = async (params, options) => {
 };
 
 export const getListProductsQueryKey = (params) => {
-  return [`${VITE_BASE_URL}/api/products`, ...(params ? [params] : [])];
+  return [`${BASE_URL}/api/products`, ...(params ? [params] : [])];
 };
 
 export const getListProductsQueryOptions = (params, options) => {
@@ -96,7 +98,7 @@ export function useListProducts(params, options) {
 /**
  * @summary Create a product (admin)
  */
-export const getCreateProductUrl = () => `${VITE_BASE_URL}/api/products`;
+export const getCreateProductUrl = () => `${BASE_URL}/api/products`;
 
 export const createProduct = async (createProductInput, options) => {
   return customFetch(getCreateProductUrl(), {
@@ -132,7 +134,7 @@ export const useCreateProduct = (options) => {
 /**
  * @summary Get a single product
  */
-export const getGetProductUrl = (id) => `${VITE_BASE_URL}/api/products/${id}`;
+export const getGetProductUrl = (id) => `${BASE_URL}/api/products/${id}`;
 
 export const getProduct = async (id, options) => {
   return customFetch(getGetProductUrl(id), {
@@ -141,7 +143,7 @@ export const getProduct = async (id, options) => {
   });
 };
 
-export const getGetProductQueryKey = (id) => [`${VITE_BASE_URL}/api/products/${id}`];
+export const getGetProductQueryKey = (id) => [`${BASE_URL}/api/products/${id}`];
 
 export const getGetProductQueryOptions = (id, options) => {
   const { query: queryOptions, request: requestOptions } = options || {};
@@ -164,7 +166,7 @@ export function useGetProduct(id, options) {
 /**
  * @summary Update a product (admin)
  */
-export const getUpdateProductUrl = (id) => `${VITE_BASE_URL}/api/products/${id}`;
+export const getUpdateProductUrl = (id) => `${BASE_URL}/api/products/${id}`;
 
 export const updateProduct = async (id, createProductInput, options) => {
   return customFetch(getUpdateProductUrl(id), {
@@ -200,7 +202,7 @@ export const useUpdateProduct = (options) => {
 /**
  * @summary Delete a product (admin)
  */
-export const getDeleteProductUrl = (id) => `${VITE_BASE_URL}/api/products/${id}`;
+export const getDeleteProductUrl = (id) => `${BASE_URL}/api/products/${id}`;
 
 export const deleteProduct = async (id, options) => {
   return customFetch(getDeleteProductUrl(id), {
@@ -234,7 +236,7 @@ export const useDeleteProduct = (options) => {
 /**
  * List all categories
  */
-export const getListCategoriesUrl = () => `${VITE_BASE_URL}/api/categories`;
+export const getListCategoriesUrl = () => `${BASE_URL}/api/categories`;
 
 export const listCategories = async (options) => {
   return customFetch(getListCategoriesUrl(), {
@@ -243,7 +245,7 @@ export const listCategories = async (options) => {
   });
 };
 
-export const getListCategoriesQueryKey = () => [`${VITE_BASE_URL}/api/categories`];
+export const getListCategoriesQueryKey = () => [`${BASE_URL}/api/categories`];
 
 export const getListCategoriesQueryOptions = (options) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
@@ -263,7 +265,7 @@ export const useListCategories = (options) => {
 /**
  * Create a category (admin)
  */
-export const getCreateCategoryUrl = () => `${VITE_BASE_URL}/api/categories`;
+export const getCreateCategoryUrl = () => `${BASE_URL}/api/categories`;
 
 export const createCategory = async (createCategoryInput, options) => {
   return customFetch(getCreateCategoryUrl(), {
@@ -299,7 +301,7 @@ export const useCreateCategory = (options) => {
 /**
  * Delete a category (admin)
  */
-export const getDeleteCategoryUrl = (id) => `${VITE_BASE_URL}/api/categories/${id}`;
+export const getDeleteCategoryUrl = (id) => `${BASE_URL}/api/categories/${id}`;
 
 export const deleteCategory = async (id, options) => {
   return customFetch(getDeleteCategoryUrl(id), {
@@ -333,7 +335,7 @@ export const useDeleteCategory = (options) => {
 /**
  * List all banners
  */
-export const getListBannersUrl = () => `${VITE_BASE_URL}/api/banners`;
+export const getListBannersUrl = () => `${BASE_URL}/api/banners`;
 
 export const listBanners = async (options) => {
   return customFetch(getListBannersUrl(), {
@@ -342,7 +344,7 @@ export const listBanners = async (options) => {
   });
 };
 
-export const getListBannersQueryKey = () => [`${VITE_BASE_URL}/api/banners`];
+export const getListBannersQueryKey = () => [`${BASE_URL}/api/banners`];
 
 export const getListBannersQueryOptions = (options) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
@@ -362,7 +364,7 @@ export const useListBanners = (options) => {
 /**
  * Create a banner (admin)
  */
-export const getCreateBannerUrl = () => `${VITE_BASE_URL}/api/banners`;
+export const getCreateBannerUrl = () => `${BASE_URL}/api/banners`;
 
 export const createBanner = async (createBannerInput, options) => {
   return customFetch(getCreateBannerUrl(), {
@@ -395,7 +397,7 @@ export const useCreateBanner = (options) => {
   const mutationKey = ["createBanner"];
   const mutationFn = (props) => {
     const { data } = props ?? {};
-    return customFetch(`${VITE_BASE_URL}/api/banners`, {
+    return customFetch(`${BASE_URL}/api/banners`, {
       ...options?.request,
       method: "POST",
       headers: { "Content-Type": "application/json", ...options?.request?.headers },
@@ -413,7 +415,7 @@ export const useUpdateBanner = (options) => {
   const mutationKey = ["updateBanner"];
   const mutationFn = (props) => {
     const { id, data } = props ?? {};
-    return customFetch(`${VITE_BASE_URL}/api/banners/${id}`, {
+    return customFetch(`${BASE_URL}/api/banners/${id}`, {
       ...options?.request,
       method: "PUT",
       headers: { "Content-Type": "application/json", ...options?.request?.headers },
@@ -431,7 +433,7 @@ export const useDeleteBanner = (options) => {
   const mutationKey = ["deleteBanner"];
   const mutationFn = (props) => {
     const { id } = props ?? {};
-    return customFetch(`${VITE_BASE_URL}/api/banners/${id}`, {
+    return customFetch(`${BASE_URL}/api/banners/${id}`, {
       ...options?.request,
       method: "DELETE",
     });
@@ -444,7 +446,7 @@ export const useDeleteBanner = (options) => {
  * @summary List all orders (admin)
  */
 export const useListOrders = (options) => {
-  const queryKey = [`${VITE_BASE_URL}/api/orders`];
+  const queryKey = [`${BASE_URL}/api/orders`];
   const queryFn = ({ signal }) =>
     customFetch(`/api/orders`, { signal, ...options?.request, method: "GET" });
 
@@ -459,7 +461,7 @@ export const useCreateOrder = (options) => {
   const mutationKey = ["createOrder"];
   const mutationFn = (props) => {
     const { data } = props ?? {};
-    return customFetch(`${VITE_BASE_URL}/api/orders`, {
+    return customFetch(`${BASE_URL}/api/orders`, {
       ...options?.request,
       method: "POST",
       headers: { "Content-Type": "application/json", ...options?.request?.headers },
@@ -474,7 +476,7 @@ export const useCreateOrder = (options) => {
  * @summary Get a single order
  */
 export const useGetOrder = (id, options) => {
-  const queryKey = [`${VITE_BASE_URL}/api/orders/${id}`];
+  const queryKey = [`${BASE_URL}/api/orders/${id}`];
   const queryFn = ({ signal }) =>
     customFetch(`/api/orders/${id}`, { signal, ...options?.request, method: "GET" });
 
@@ -507,7 +509,7 @@ export const useDeleteOrder = (options) => {
   const mutationKey = ["deleteOrder"];
   const mutationFn = (props) => {
     const { id } = props ?? {};
-    return customFetch(`${VITE_BASE_URL}/api/orders/${id}`, {
+    return customFetch(`${BASE_URL}/api/orders/${id}`, {
       ...options?.request,
       method: "DELETE",
     });
@@ -521,7 +523,7 @@ export const useDeleteOrder = (options) => {
  */
 // Just return the URL string — no fetch here
 // Only one declaration
-export const getSendVerificationCodeUrl = () => `${VITE_BASE_URL}/api/auth/send-code`;
+export const getSendVerificationCodeUrl = () => `${BASE_URL}/api/auth/send-code`;
 
 // Do the actual fetch here
 export const sendVerificationCode = async (sendCodeInput, options) => {
@@ -587,7 +589,7 @@ export const useVerifyCode = (options) => {
   return useMutation(getVerifyCodeMutationOptions(options));
 };
 
-export const getVerifyCodeUrl = () => `${VITE_BASE_URL}/api/auth/verify-code`;
+export const getVerifyCodeUrl = () => `${BASE_URL}/api/auth/verify-code`;
 
 /** Admin login */
 export const loginAdmin = async (adminLoginInput, options) => {
@@ -621,7 +623,7 @@ export const useLoginAdmin = (options) => {
   return useMutation(getLoginAdminMutationOptions(options));
 };
 
-export const getLoginAdminUrl = () => `${VITE_BASE_URL}/api/auth/login`;
+export const getLoginAdminUrl = () => `${BASE_URL}/api/auth/login`;
 
 /** List users */
 export const listUsers = async (options) => {
@@ -643,7 +645,7 @@ export const useListUsers = (options) => {
   return { ...query, queryKey: queryOptions.queryKey };
 };
 
-export const getListUsersUrl = () => `${VITE_BASE_URL}/api/users`;
+export const getListUsersUrl = () => `${BASE_URL}/api/users`;
 
 /** Update user role */
 export const updateUserRole = async (id, updateUserRoleInput, options) => {
@@ -677,14 +679,14 @@ export const useUpdateUserRole = (options) => {
   return useMutation(getUpdateUserRoleMutationOptions(options));
 };
 
-export const getUpdateUserRoleUrl = (id) => `${VITE_BASE_URL}/api/users/${id}/role`;
+export const getUpdateUserRoleUrl = (id) => `${BASE_URL}/api/users/${id}/role`;
 
 /** Get user orders */
 export const getUserOrders = async (options) => {
   return customFetch(getGetUserOrdersUrl(), { ...options, method: "GET" });
 };
 
-export const getGetUserOrdersQueryKey = () => [`${VITE_BASE_URL}/api/users/me/orders`];
+export const getGetUserOrdersQueryKey = () => [`${BASE_URL}/api/users/me/orders`];
 
 export const getGetUserOrdersQueryOptions = (options) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
@@ -699,4 +701,4 @@ export const useGetUserOrders = (options) => {
   return { ...query, queryKey: queryOptions.queryKey };
 };
 
-export const getGetUserOrdersUrl = () => `{VITE_BASE_URL}/api/users/me/orders`;
+export const getGetUserOrdersUrl = () => `{BASE_URL}/api/users/me/orders`;
