@@ -12,6 +12,8 @@ import { Helmet } from "react-helmet-async";
 
 const SAVED_ADDRESSES_KEY = "store-saved-addresses";
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 function getSavedAddresses() {
   try { return JSON.parse(localStorage.getItem(SAVED_ADDRESSES_KEY) || "[]"); } catch { return []; }
 }
@@ -147,7 +149,7 @@ function MyOrders({ email }) {
   useEffect(() => {
     if (!email) return;
     setLoading(true);
-    fetch(`/api/orders?email=${encodeURIComponent(email)}`)
+    fetch(`${BASE_URL}/api/orders?email=${encodeURIComponent(email)}`)
       .then(r => r.json())
       .then((data) => {
         setOrders(Array.isArray(data) ? data : []);
