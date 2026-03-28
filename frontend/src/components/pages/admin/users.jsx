@@ -9,6 +9,8 @@ export default function AdminUsers() {
   const token = userToken || adminToken;
   const queryClient = useQueryClient();
 
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+
   const { data: users, isLoading } = useListUsers({ request: { headers: { Authorization: `Bearer ${token}` } } });
   const { mutate: updateRole } = useUpdateUserRole();
 
@@ -25,12 +27,12 @@ export default function AdminUsers() {
   const handleDelete = async (id) => {
     if (!confirm("Delete this user? This cannot be undone.")) return;
     try {
-      const res = await fetch(`/api/users/${id}`, {
+      const res = await fetch(`${BASE_URL}/api/users/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) {
-        queryClient.invalidateQueries({ queryKey: ["/api/users"] });
+        queryClient.invalidateQueries({ queryKey: [`${BASE_URL}/api/users`] });
       } else {
         alert("Failed to delete user.");
       }

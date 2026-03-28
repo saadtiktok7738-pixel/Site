@@ -30,7 +30,7 @@ const DEFAULT_FORM = {
   imageBase64: "",
   extraImages: [],
 };
-
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 function fileToBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -138,7 +138,7 @@ export default function AdminProducts() {
     const authHeader = { Authorization: `Bearer ${adminToken}` };
     const onSuccess = () => {
       setIsModalOpen(false);
-      queryClient.invalidateQueries({ queryKey: ["/api/products"] });
+      queryClient.invalidateQueries({ queryKey: [`${BASE_URL}/api/products`] });
     };
     if (editingId) {
       updateProduct(

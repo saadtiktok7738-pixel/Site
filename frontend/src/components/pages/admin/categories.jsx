@@ -50,7 +50,7 @@ export default function AdminCategories() {
   const { mutate: deleteCategory } = useDeleteCategory();
 
   const [form, setForm] = useState({ name: "", imageUrl: "" });
-
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!form.name.trim()) return;
@@ -62,7 +62,7 @@ export default function AdminCategories() {
       {
         onSuccess: () => {
           setForm({ name: "", imageUrl: "" });
-          queryClient.invalidateQueries({ queryKey: ["/api/categories"] });
+          queryClient.invalidateQueries({ queryKey: [`${BASE_URL}/api/categories`] });
         },
       }
     );
@@ -72,7 +72,7 @@ export default function AdminCategories() {
     if (!confirm("Delete this category?")) return;
     deleteCategory(
       { id, request: { headers: { Authorization: `Bearer ${token}` } } },
-      { onSuccess: () => queryClient.invalidateQueries({ queryKey: ["/api/categories"] }) }
+      { onSuccess: () => queryClient.invalidateQueries({ queryKey: [`${BASE_URL}/api/categories`] }) }
     );
   };
 
