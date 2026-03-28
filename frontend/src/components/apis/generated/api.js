@@ -448,7 +448,7 @@ export const useDeleteBanner = (options) => {
 export const useListOrders = (options) => {
   const queryKey = [`${BASE_URL}/api/orders`];
   const queryFn = ({ signal }) =>
-    customFetch(`/api/orders`, { signal, ...options?.request, method: "GET" });
+    customFetch(`${BASE_URL}/api/orders`, { signal, ...options?.request, method: "GET" });
 
   const query = useQuery({ queryKey, queryFn, ...(options?.query || {}) });
   return { ...query, queryKey };
@@ -478,7 +478,7 @@ export const useCreateOrder = (options) => {
 export const useGetOrder = (id, options) => {
   const queryKey = [`${BASE_URL}/api/orders/${id}`];
   const queryFn = ({ signal }) =>
-    customFetch(`/api/orders/${id}`, { signal, ...options?.request, method: "GET" });
+    customFetch(`${BASE_URL}/api/orders/${id}`, { signal, ...options?.request, method: "GET" });
 
   const query = useQuery({ queryKey, queryFn, enabled: !!id, ...(options?.query || {}) });
   return { ...query, queryKey };
@@ -491,7 +491,7 @@ export const useUpdateOrderStatus = (options) => {
   const mutationKey = ["updateOrderStatus"];
   const mutationFn = (props) => {
     const { id, data } = props ?? {};
-    return customFetch(`/api/orders/${id}`, {
+    return customFetch(`${BASE_URL}/api/orders/${id}`, {
       ...options?.request,
       method: "PUT",
       headers: { "Content-Type": "application/json", ...options?.request?.headers },
