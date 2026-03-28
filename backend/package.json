@@ -7,8 +7,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "SET NODE_ENV=DEVELOPMENT& nodemon backend/app.js",
+    "start": "node init && node app.js",
+    "dev": "node init && SET NODE_ENV=DEVELOPMENT& nodemon backend/app.js",
     "prod": "NODE_ENV=PRODUCTION node backend/app.js"
   },
   "dependencies": {
