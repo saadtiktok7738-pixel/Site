@@ -33,6 +33,10 @@ app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use("/api", router);
 
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
+
 await connectDB();
 
 const PORT = process.env.PORT || 5000;
